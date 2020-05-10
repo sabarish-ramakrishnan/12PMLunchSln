@@ -1,0 +1,237 @@
+
+.Header {
+  padding: 154px 0 100px;
+}
+
+@media (min-width: 992px) {
+  header {
+    padding: 156px 0 100px;
+  }
+}
+
+.Section {
+  padding: 150px 0;
+}
+
+/*Ajeesh Styles */
+
+
+/* .App {
+  text-align: center;
+} */
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 170px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.Content-Holder
+{
+  height:700px;
+  /* overflow-y:scroll ; */
+}
+
+.Required:before {
+  color: red;
+  content: '*';
+}
+.labeText
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:bold;
+  font-size:11px;
+ 
+}
+.labelTextNormal
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:small;
+  font-weight: normal;
+  
+}
+.errorText
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:small;
+  font-weight: normal;
+  color:red;
+}
+
+
+.menuItems
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:11px;
+  font-weight: normal;
+}
+
+.textOverflow
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:11px;
+  font-weight: normal;
+  display: inline-block;
+  width:150px;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow:ellipsis; 
+}
+
+.menuHeader
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:small;
+  font-weight: bold;
+}
+
+.divBorder {
+  border-radius: 25px;
+  border: 2px solid #337ab7;
+  padding: 20px; 
+}
+
+.form-control-inline {
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.footer {
+  clear: both;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  background-color:#034e62;
+  height: 50px !important;
+  -webkit-box-shadow: inset 0 4px 5px -2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 4px 5px -2px rgba(0,0,0,.05);
+  box-shadow: inset 0 4px 5px -2px rgba(0,0,0,.05);
+}
+
+.viewMore
+ { 
+  text-decoration: none;
+  color: #2da2c5;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:smaller;
+}
+
+/* .carousel-control,.carousel-indicators
+{
+  display: none;
+} */
+
+.popover-title {
+  color: #2da2c5;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.pageContentDiv {
+  margin: 10px 1px 0px 1px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0px 20px 20px 15px;
+}
+
+.navbar {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FDE14F),to(#FDCD3C)) !important;
+  background-image: -webkit-linear-gradient(top, #FDE14F 0%,#FDCD3C 100%) !important;
+  background-image: -o-linear-gradient(top, #FDE14F 0%,#FDCD3C 100%) !important;
+  background-image: linear-gradient(to bottom, #FDE14F 0%,#FDCD3C 100%) !important;
+  border: 1px solid #FDCD3C !important;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .active > a{
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FDE14F),to(#FDCD3C)) !important;
+  background-image: -webkit-linear-gradient(top, #FDE14F 0%,#FDCD3C 100%) !important;
+  background-image: -o-linear-gradient(top, #FDE14F 0%,#FDCD3C 100%) !important;
+  background-image: linear-gradient(to bottom, #FDE14F 0%,#FDCD3C 100%) !important;
+}
+.dropdown-menu
+{
+  background-color: #FDCD3C !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+  }
+
+      .navbar-nav .nav-item {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1 0 auto;
+          -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+      }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .masthead,
+  .marketing,
+  .footer {
+      padding-right: 0;
+      padding-left: 0;
+  }
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    text-align: center;
+    background-color: white;
+    margin-top: 10px;
+    border: 1px solid #777;
+    border-radius: 2px;
+}
+
+.jumbotron .btn {
+    padding: 14px 15px;
+    font-size: 14px;
+}
+.clickable
+{
+  cursor: pointer;
+}
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}

@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DailyMenus">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuDate" Type="date" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedbacks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="FeedbackType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="SubmittedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GlobalSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SettingsKey" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SettingsValue" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="KeyType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ItemDescription" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ItemPrice" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="MenuItemMappings">
+          <Key>
+            <PropertyRef Name="MenuItemMappingId" />
+          </Key>
+          <Property Name="MenuItemMappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ItemType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemPrice" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="MenuTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuTypes">
+          <Key>
+            <PropertyRef Name="MenuTypeId" />
+          </Key>
+          <Property Name="MenuTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItemMappings">
+          <Key>
+            <PropertyRef Name="OrderItemMappingId" />
+          </Key>
+          <Property Name="OrderItemMappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="ItemType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MenuTypeId" Type="int" Nullable="false" />
+          <Property Name="OrderQuantity" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="8" Scale="3" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="4000" />
+          <Property Name="RequestedDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderStatusCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SurveyQuestionResponses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyResponseId" Type="int" Nullable="false" />
+          <Property Name="QuestionUniqueId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Response" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ResponseComments" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="SurveyResponses">
+          <Key>
+            <PropertyRef Name="SurveyResponseId" />
+          </Key>
+          <Property Name="SurveyResponseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyUniqueId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Apartment" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MealOpted" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="4000" />
+          <Property Name="SubmittedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EmailVerified" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="RegistrationToken" Type="uniqueidentifier" />
+          <Property Name="LoginToken" Type="uniqueidentifier" />
+          <Property Name="LoginTokenExpiry" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DailyMenu_Orders_MenuId">
+          <End Role="MenuTypes" Type="Self.MenuTypes" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTypes">
+              <PropertyRef Name="MenuTypeId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="MenuTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemMappings_ItemId">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="MenuItemMappings" Type="Self.MenuItemMappings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="MenuItemMappings">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemMappings_MenuTypes">
+          <End Role="MenuTypes" Type="Self.MenuTypes" Multiplicity="1" />
+          <End Role="MenuItemMappings" Type="Self.MenuItemMappings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTypes">
+              <PropertyRef Name="MenuTypeId" />
+            </Principal>
+            <Dependent Role="MenuItemMappings">
+              <PropertyRef Name="MenuTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuTypes_DailyMenus">
+          <End Role="DailyMenus" Type="Self.DailyMenus" Multiplicity="1" />
+          <End Role="MenuTypes" Type="Self.MenuTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailyMenus">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuTypes">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemMappings_ItemId">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="OrderItemMappings" Type="Self.OrderItemMappings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="OrderItemMappings">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemMappings_OrderId">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItemMappings" Type="Self.OrderItemMappings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderItemMappings">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveyQuestionResponses_SurveyResponses">
+          <End Role="SurveyResponses" Type="Self.SurveyResponses" Multiplicity="1" />
+          <End Role="SurveyQuestionResponses" Type="Self.SurveyQuestionResponses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurveyResponses">
+              <PropertyRef Name="SurveyResponseId" />
+            </Principal>
+            <Dependent Role="SurveyQuestionResponses">
+              <PropertyRef Name="SurveyResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModelStoreContainer">
+          <EntitySet Name="DailyMenus" EntityType="Self.DailyMenus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalSettings" EntityType="Self.GlobalSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItemMappings" EntityType="Self.MenuItemMappings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuTypes" EntityType="Self.MenuTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItemMappings" EntityType="Self.OrderItemMappings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyQuestionResponses" EntityType="Self.SurveyQuestionResponses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyResponses" EntityType="Self.SurveyResponses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DailyMenu_Orders_MenuId" Association="Self.FK_DailyMenu_Orders_MenuId">
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemMappings_ItemId" Association="Self.FK_MenuItemMappings_ItemId">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="MenuItemMappings" EntitySet="MenuItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemMappings_MenuTypes" Association="Self.FK_MenuItemMappings_MenuTypes">
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+            <End Role="MenuItemMappings" EntitySet="MenuItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuTypes_DailyMenus" Association="Self.FK_MenuTypes_DailyMenus">
+            <End Role="DailyMenus" EntitySet="DailyMenus" />
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemMappings_ItemId" Association="Self.FK_OrderItemMappings_ItemId">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="OrderItemMappings" EntitySet="OrderItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemMappings_OrderId" Association="Self.FK_OrderItemMappings_OrderId">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItemMappings" EntitySet="OrderItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users_UserId" Association="Self.FK_Orders_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveyQuestionResponses_SurveyResponses" Association="Self.FK_SurveyQuestionResponses_SurveyResponses">
+            <End Role="SurveyResponses" EntitySet="SurveyResponses" />
+            <End Role="SurveyQuestionResponses" EntitySet="SurveyQuestionResponses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DailyMenu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Price" Type="Decimal" Precision="8" Scale="3" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="MenuName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MenuTypes" Relationship="Self.FK_MenuTypes_DailyMenus" FromRole="DailyMenus" ToRole="MenuTypes" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FeedbackType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="GlobalSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SettingsKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SettingsValue" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ItemPrice" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MenuItemMappings" Relationship="Self.FK_MenuItemMappings_ItemId" FromRole="Items" ToRole="MenuItemMappings" />
+          <NavigationProperty Name="OrderItemMappings" Relationship="Self.FK_OrderItemMappings_ItemId" FromRole="Items" ToRole="OrderItemMappings" />
+        </EntityType>
+        <EntityType Name="MenuItemMapping">
+          <Key>
+            <PropertyRef Name="MenuItemMappingId" />
+          </Key>
+          <Property Name="MenuItemMappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemPrice" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="MenuTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_MenuItemMappings_ItemId" FromRole="MenuItemMappings" ToRole="Items" />
+          <NavigationProperty Name="MenuType" Relationship="Self.FK_MenuItemMappings_MenuTypes" FromRole="MenuItemMappings" ToRole="MenuTypes" />
+        </EntityType>
+        <EntityType Name="MenuType">
+          <Key>
+            <PropertyRef Name="MenuTypeId" />
+          </Key>
+          <Property Name="MenuTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <NavigationProperty Name="DailyMenu" Relationship="Self.FK_MenuTypes_DailyMenus" FromRole="MenuTypes" ToRole="DailyMenus" />
+          <NavigationProperty Name="MenuItemMappings" Relationship="Self.FK_MenuItemMappings_MenuTypes" FromRole="MenuTypes" ToRole="MenuItemMappings" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_DailyMenu_Orders_MenuId" FromRole="MenuTypes" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderItemMapping">
+          <Key>
+            <PropertyRef Name="OrderItemMappingId" />
+          </Key>
+          <Property Name="OrderItemMappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="ItemType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_OrderItemMappings_ItemId" FromRole="OrderItemMappings" ToRole="Items" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderItemMappings_OrderId" FromRole="OrderItemMappings" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MenuTypeId" Type="Int32" Nullable="false" />
+          <Property Name="OrderQuantity" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="8" Scale="3" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="RequestedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderStatusCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MenuType" Relationship="Self.FK_DailyMenu_Orders_MenuId" FromRole="Orders" ToRole="MenuTypes" />
+          <NavigationProperty Name="OrderItemMappings" Relationship="Self.FK_OrderItemMappings_OrderId" FromRole="Orders" ToRole="OrderItemMappings" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Orders_Users_UserId" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SurveyQuestionRespons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyResponseId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionUniqueId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Question" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Response" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SurveyRespons" Relationship="Self.FK_SurveyQuestionResponses_SurveyResponses" FromRole="SurveyQuestionResponses" ToRole="SurveyResponses" />
+        </EntityType>
+        <EntityType Name="SurveyRespons">
+          <Key>
+            <PropertyRef Name="SurveyResponseId" />
+          </Key>
+          <Property Name="SurveyResponseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyUniqueId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MealOpted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SubmittedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SurveyQuestionResponses" Relationship="Self.FK_SurveyQuestionResponses_SurveyResponses" FromRole="SurveyResponses" ToRole="SurveyQuestionResponses" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EmailVerified" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RegistrationToken" Type="Guid" />
+          <Property Name="LoginToken" Type="Guid" />
+          <Property Name="LoginTokenExpiry" Type="DateTime" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users_UserId" FromRole="Users" ToRole="Orders" />
+        </EntityType>
+        <Association Name="FK_MenuTypes_DailyMenus">
+          <End Role="DailyMenus" Type="Self.DailyMenu" Multiplicity="1" />
+          <End Role="MenuTypes" Type="Self.MenuType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailyMenus">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuTypes">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemMappings_ItemId">
+          <End Role="Items" Type="Self.Item" Multiplicity="1" />
+          <End Role="MenuItemMappings" Type="Self.MenuItemMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="MenuItemMappings">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemMappings_ItemId">
+          <End Role="Items" Type="Self.Item" Multiplicity="1" />
+          <End Role="OrderItemMappings" Type="Self.OrderItemMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="OrderItemMappings">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItemMappings_MenuTypes">
+          <End Role="MenuTypes" Type="Self.MenuType" Multiplicity="1" />
+          <End Role="MenuItemMappings" Type="Self.MenuItemMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTypes">
+              <PropertyRef Name="MenuTypeId" />
+            </Principal>
+            <Dependent Role="MenuItemMappings">
+              <PropertyRef Name="MenuTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailyMenu_Orders_MenuId">
+          <End Role="MenuTypes" Type="Self.MenuType" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTypes">
+              <PropertyRef Name="MenuTypeId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="MenuTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemMappings_OrderId">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderItemMappings" Type="Self.OrderItemMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderItemMappings">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveyQuestionResponses_SurveyResponses">
+          <End Role="SurveyResponses" Type="Self.SurveyRespons" Multiplicity="1" />
+          <End Role="SurveyQuestionResponses" Type="Self.SurveyQuestionRespons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurveyResponses">
+              <PropertyRef Name="SurveyResponseId" />
+            </Principal>
+            <Dependent Role="SurveyQuestionResponses">
+              <PropertyRef Name="SurveyResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DailyMenus" EntityType="Self.DailyMenu" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="GlobalSettings" EntityType="Self.GlobalSetting" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="MenuItemMappings" EntityType="Self.MenuItemMapping" />
+          <EntitySet Name="MenuTypes" EntityType="Self.MenuType" />
+          <EntitySet Name="OrderItemMappings" EntityType="Self.OrderItemMapping" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="SurveyQuestionResponses" EntityType="Self.SurveyQuestionRespons" />
+          <EntitySet Name="SurveyResponses" EntityType="Self.SurveyRespons" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_MenuTypes_DailyMenus" Association="Self.FK_MenuTypes_DailyMenus">
+            <End Role="DailyMenus" EntitySet="DailyMenus" />
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemMappings_ItemId" Association="Self.FK_MenuItemMappings_ItemId">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="MenuItemMappings" EntitySet="MenuItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemMappings_ItemId" Association="Self.FK_OrderItemMappings_ItemId">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="OrderItemMappings" EntitySet="OrderItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItemMappings_MenuTypes" Association="Self.FK_MenuItemMappings_MenuTypes">
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+            <End Role="MenuItemMappings" EntitySet="MenuItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailyMenu_Orders_MenuId" Association="Self.FK_DailyMenu_Orders_MenuId">
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemMappings_OrderId" Association="Self.FK_OrderItemMappings_OrderId">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItemMappings" EntitySet="OrderItemMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users_UserId" Association="Self.FK_Orders_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveyQuestionResponses_SurveyResponses" Association="Self.FK_SurveyQuestionResponses_SurveyResponses">
+            <End Role="SurveyResponses" EntitySet="SurveyResponses" />
+            <End Role="SurveyQuestionResponses" EntitySet="SurveyQuestionResponses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="DailyMenus">
+            <EntityTypeMapping TypeName="DBModel.DailyMenu">
+              <MappingFragment StoreEntitySet="DailyMenus">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuDate" ColumnName="MenuDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="DBModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedbacks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FeedbackType" ColumnName="FeedbackType" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GlobalSettings">
+            <EntityTypeMapping TypeName="DBModel.GlobalSetting">
+              <MappingFragment StoreEntitySet="GlobalSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SettingsKey" ColumnName="SettingsKey" />
+                <ScalarProperty Name="SettingsValue" ColumnName="SettingsValue" />
+                <ScalarProperty Name="KeyType" ColumnName="KeyType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="DBModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItemMappings">
+            <EntityTypeMapping TypeName="DBModel.MenuItemMapping">
+              <MappingFragment StoreEntitySet="MenuItemMappings">
+                <ScalarProperty Name="MenuItemMappingId" ColumnName="MenuItemMappingId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="MenuTypeId" ColumnName="MenuTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuTypes">
+            <EntityTypeMapping TypeName="DBModel.MenuType">
+              <MappingFragment StoreEntitySet="MenuTypes">
+                <ScalarProperty Name="MenuTypeId" ColumnName="MenuTypeId" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuTypeName" ColumnName="MenuTypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItemMappings">
+            <EntityTypeMapping TypeName="DBModel.OrderItemMapping">
+              <MappingFragment StoreEntitySet="OrderItemMappings">
+                <ScalarProperty Name="OrderItemMappingId" ColumnName="OrderItemMappingId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MenuTypeId" ColumnName="MenuTypeId" />
+                <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+                <ScalarProperty Name="OrderStatusCode" ColumnName="OrderStatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyQuestionResponses">
+            <EntityTypeMapping TypeName="DBModel.SurveyQuestionRespons">
+              <MappingFragment StoreEntitySet="SurveyQuestionResponses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyResponseId" ColumnName="SurveyResponseId" />
+                <ScalarProperty Name="QuestionUniqueId" ColumnName="QuestionUniqueId" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="ResponseComments" ColumnName="ResponseComments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyResponses">
+            <EntityTypeMapping TypeName="DBModel.SurveyRespons">
+              <MappingFragment StoreEntitySet="SurveyResponses">
+                <ScalarProperty Name="SurveyResponseId" ColumnName="SurveyResponseId" />
+                <ScalarProperty Name="SurveyUniqueId" ColumnName="SurveyUniqueId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="MealOpted" ColumnName="MealOpted" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmailVerified" ColumnName="EmailVerified" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="RegistrationToken" ColumnName="RegistrationToken" />
+                <ScalarProperty Name="LoginToken" ColumnName="LoginToken" />
+                <ScalarProperty Name="LoginTokenExpiry" ColumnName="LoginTokenExpiry" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

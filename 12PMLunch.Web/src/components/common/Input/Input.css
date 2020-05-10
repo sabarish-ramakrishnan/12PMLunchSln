@@ -1,0 +1,8 @@
+.Invalid {
+    border: 1px solid red !important;
+    background-color: #FDA49A;
+}
+.form-control:focus {
+    outline: none;
+    background-color: #ccc;
+}

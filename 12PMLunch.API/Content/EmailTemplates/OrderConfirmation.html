@@ -1,0 +1,83 @@
+﻿<style>
+.item{
+    border: 1px solid black;
+	font-family:Helvetica,Arial,sans-serif;
+}
+
+#order{
+    font-size: 14px;
+    border: 1px solid black;
+}
+
+#note{
+    color: #B20000;
+	font-family:Helvetica,Arial,sans-serif;
+}
+</style>
+
+<p style="font-family:Helvetica,Arial,sans-serif">Order Confirmation from 12PM</p>
+<p style="font-family:Helvetica,Arial,sans-serif"><strong>Dear [#FullName],</strong></p>    
+<p style="font-family:Helvetica,Arial,sans-serif"><strong>THANK YOU FOR PLACING YOUR ORDER AT 12PM</strong></p>
+
+<p style="font-family:Helvetica,Arial,sans-serif">If you have any questions regarding your order, please call us at <strong>872-203-2812</strong> and<br> reference your order number [#OrderNumber].</p>
+<table style="font-family:Helvetica,Arial,sans-serif">
+    <tr>
+   <td><strong>Order Number:</strong></td>
+   <td>	[#OrderNumber]</td>
+    </tr>
+    <tr>
+        <td><strong>Menu Date:</strong></td>
+        <td>[#MenuDate]</td>
+    </tr>
+    <tr>
+        <td><strong>Submitted Date:</strong></td>
+        <td>[#SubmittedDate]</td>
+    </tr>
+    <tr>
+        <td><strong>Contact:</strong></ttd>
+        <td>[#FullName]</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td> [#Mobile]</td> 
+    </tr>
+             
+    <tr>
+        <td></td>
+        <td> [#Email]</td></tr>
+    <tr>
+    <tr>          
+        <td><strong>Status:</strong></td>
+        <td>[#Status]</td>
+    </tr>
+<tr>          
+        <td><strong>Comments:</strong></td>
+        <td>[#Comments]</td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+
+<table class="item">
+<tr>
+    <td id="order" width="200"><strong>ITEM</strong></td>
+    <td id="order"width="100"><strong>QUANTITY</strong></td>
+    <td id="order"width="100"><strong>PRICE</strong></td>
+    <td id="order"width="100"><strong>TOTAL AMOUNT</strong></td>
+</tr>
+<tr>
+        <td id="order" width="200">[#MenuType]<p>Selections:</p>
+            <p>[#OtherItems]</p></td>
+        
+        
+    
+        <td id="order"width="100">[#Quantity]</td>
+        <td id="order"width="100">[#Price]</td>
+        <td id="order"width="100">[#TotalAmount]</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<p id="note"><strong>Note: Payment by <u>CASH</u>  on delivery</strong></p>
+<p style="font-family:Helvetica,Arial,sans-serif">Thanks,
+<br>12 PM Lunch Team
+<br>Contact: 872-203-2812 or 
+<br>Email: 12pmlunch@gmail.com</p>

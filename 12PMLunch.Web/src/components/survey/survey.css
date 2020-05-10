@@ -1,0 +1,9 @@
+.react-numeric-input > b{
+    display: none !important;
+}
+
+.react-numeric-input > input{
+    padding-left:12px !important;
+    text-align: left !important;
+    width:100px !important;
+}

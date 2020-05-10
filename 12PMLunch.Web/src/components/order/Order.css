@@ -1,0 +1,20 @@
+.carousel-control,.carousel-indicators
+{
+  display: none;
+} 
+
+.orderHeader
+{
+  color: #2da2c5;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.note
+{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:normal;
+  font-size:11px;
+  color:brown;
+ 
+}

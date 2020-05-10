@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71630a6af69e4abe92f6fa6e5cf6f7d8" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.DailyMenu" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Feedback" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.GlobalSetting" Width="1.5" PointX="2.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Item" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MenuItemMapping" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MenuType" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.OrderItemMapping" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Order" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.SurveyQuestionRespons" Width="1.5" PointX="11" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.SurveyRespons" Width="1.5" PointX="8.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.FK_MenuTypes_DailyMenus" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_MenuItemMappings_ItemId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_OrderItemMappings_ItemId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_MenuItemMappings_MenuTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_DailyMenu_Orders_MenuId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_OrderItemMappings_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Orders_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_SurveyQuestionResponses_SurveyResponses" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
